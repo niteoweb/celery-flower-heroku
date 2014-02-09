@@ -6,24 +6,24 @@ This project template/guide helps you to bootstrap the process and creates a sim
 
 Clone the repo:
 
-    git clone https://github.com/jorilallo/celery-flower-heroku.git
+    git clone https://github.com/busbud/celery-flower-heroku.git
 
-Create an Heroku app:
+Create a Heroku app:
 
     heroku create APP_NAME
 
 Add database for persistance:
 
     heroku addons:add heroku-postgresql:dev
-    heroku config:set DATABASE_URL=<copy the newly created database url here>
+    heroku pg:promote <copy the newly created database url here>
 
-Configure the app by providing your broker url (RabbitMQ, Redis, what have you) and a password for logging into Flower:
+Configure the app by providing your broker url (RabbitMQ, Redis, what have you) and the Google OpenID auth email domain for logging into Flower:
 
     heroku config:set BROKER_URL=redis://...
-    heroku config:set FLOWER_AUTH="username:password"
+    heroku config:set FLOWER_EMAIL_DOMAIN=".*@yourdomain\.com$"
 
 Push to heroku:
 
     git push heroku master
 
-Now visit the app. It will ask for a username and a password which you defined above.
+Now visit the app. It will ask you to login in using your Google OpenID. You can also setup [other auth options](https://github.com/mher/flower/wiki/Authentication).
