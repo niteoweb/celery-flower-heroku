@@ -12,11 +12,6 @@ Create a Heroku app:
 
     heroku create APP_NAME
 
-Add database for persistance:
-
-    heroku addons:add heroku-postgresql:dev
-    heroku pg:promote <copy the newly created database url here>
-
 Configure the app by providing your broker url (RabbitMQ, Redis, what have you) and the Google OpenID auth email domain for logging into Flower:
 
     heroku config:set BROKER_URL=redis://...
